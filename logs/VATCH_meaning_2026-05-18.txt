@@ -1,0 +1,96 @@
+2026-05-18 14:00:31.4783|INFO|Meaning|COM27: OPEN 9600/None/8/One
+2026-05-18 14:00:38.7925|INFO|Meaning|+CTSP: Set Services Profiles
+2026-05-18 14:00:38.8100|INFO|Meaning|service_profile: 1 “TE Only” controlled
+2026-05-18 14:00:38.8100|INFO|Meaning|service_layer_1: 1 Mobility Management
+2026-05-18 14:00:38.8100|INFO|Meaning|service_layer_2: 11 Group Management
+2026-05-18 14:00:38.8391|INFO|Meaning|+CTGS: Read Talkgroup Selection
+2026-05-18 14:00:38.9010|INFO|Meaning|+CTGS: MT_response Talkgroup Selection
+2026-05-18 14:00:40.7447|INFO|Meaning|+CTGL: Set Talkgroup List by Folder
+2026-05-18 14:00:40.7765|INFO|Meaning|ident_unsolic: 0 Disable DGNA unsolicited notification affecting the Talkgroup list
+2026-05-18 14:00:40.7765|INFO|Meaning|Folder_number: 0 Index of programmed Folder that TE wishes to read
+2026-05-18 14:00:40.8489|INFO|Meaning|+CTGL: Read Talkgroup List by Folder
+2026-05-18 14:00:40.9190|INFO|Meaning|L: MT_response 
+2026-05-18 14:00:40.9190|INFO|Meaning|parameter: 1 
+2026-05-18 14:00:40.9377|INFO|Meaning|parameter: Motorola 
+2026-05-18 14:00:41.0017|INFO|Meaning|parameter: 1 
+2026-05-18 14:00:41.0017|INFO|Meaning|parameter: 10700222 
+2026-05-18 14:00:41.0178|INFO|Meaning|parameter: 10700222 
+2026-05-18 14:00:41.0488|INFO|Meaning|parameter: 1 
+2026-05-18 14:00:41.0582|INFO|Meaning|parameter: 3001 
+2026-05-18 14:00:41.0582|INFO|Meaning|parameter: Motorola2 
+2026-05-18 14:00:41.0891|INFO|Meaning|parameter: 1 
+2026-05-18 14:00:41.1612|INFO|Meaning|parameter: 3002 
+2026-05-18 14:00:41.1710|INFO|Meaning|parameter: Motorola3 
+2026-05-18 14:00:41.1832|INFO|Meaning|parameter: 1 
+2026-05-18 14:00:41.1832|INFO|Meaning|parameter: 3003 
+2026-05-18 14:00:41.1978|INFO|Meaning|parameter: Motorola4 
+2026-05-18 14:00:41.2490|INFO|Meaning|parameter: 3004 
+2026-05-18 14:00:41.2490|INFO|Meaning|parameter: Motorola5 
+2026-05-18 14:00:44.8093|INFO|Meaning|+CTGL: Set Talkgroup List by Folder
+2026-05-18 14:00:44.8543|INFO|Meaning|ident_unsolic: 0 Disable DGNA unsolicited notification affecting the Talkgroup list
+2026-05-18 14:00:44.8706|INFO|Meaning|+CTGL: Read Talkgroup List by Folder
+2026-05-18 14:00:44.9569|INFO|Meaning|+CTGL: MT_response Talkgroup List by Folder
+2026-05-18 14:00:44.9699|INFO|Meaning|Number_of_folders: 1 Number of programmed Folders in the MT CP
+2026-05-18 14:00:44.9792|INFO|Meaning|Number_of_talkgroups: 5 Number of programmed Talkgroups in the MT CP
+2026-05-18 14:00:51.4229|INFO|Meaning|+CTOM: Set TMO/DMO Operating Mode
+2026-05-18 14:00:51.4666|INFO|Meaning|AI_mode: 1 Direct Mode
+2026-05-18 14:00:51.6526|INFO|Meaning|+CREG: MT_response Network Registration
+2026-05-18 14:00:51.6666|INFO|Meaning|Reg_stat: 0 Registering or searching for a network (currently out of coverage)
+2026-05-18 14:00:51.7467|INFO|Meaning|+CTDCT: MT_response DMO Communication Type
+2026-05-18 14:00:51.7467|INFO|Meaning|DM_communication_type: 4 Via Gateway/Repeater
+2026-05-18 14:00:51.8022|INFO|Meaning|+CTGS: MT_response Talkgroup Selection
+2026-05-18 14:00:51.8156|INFO|Meaning|group_type: 1 Selected Group is Attached (always used in DMO)
+2026-05-18 14:00:51.8233|INFO|Meaning|selected_GSSI: 2000 GSSI of the selected Group which shall exist in the Codeplug Talkgroup list (in the TMO list while in TMO, and the DMO list while in DMO)
+(16777215 is always a valid selection in TMO and 0 is an invalid selection in TMO)
+2026-05-18 14:00:51.8486|INFO|Meaning|+CTOM: MT_response TMO/DMO Operating Mode
+2026-05-18 14:00:51.8702|INFO|Meaning|AI_mode: 1 Direct Mode
+2026-05-18 14:00:51.9014|INFO|Meaning|+CTDGR: MT_response Synchronization with DMO Gateway and/or Repeater
+2026-05-18 14:00:51.9181|INFO|Meaning|DM_communication_type: 3 Via Gateway
+2026-05-18 14:00:51.9181|INFO|Meaning|gateway_address: 0 10-bit Gateway Address or Repeater Address
+2026-05-18 14:00:51.9438|INFO|Meaning|MNI: 75302361 MCC (3 or 4 digits) and MNC (5 digits)
+2026-05-18 14:00:51.9560|INFO|Meaning|Presence_Info: 0 Gateway and Repeater not available
+2026-05-18 14:00:54.7616|INFO|Meaning|+CTOM: Set TMO/DMO Operating Mode
+2026-05-18 14:00:54.8013|INFO|Meaning|AI_mode: 0 Trunked Mode
+2026-05-18 14:00:54.8862|INFO|Meaning|CTOM: MT_response 
+2026-05-18 14:00:54.8862|INFO|Meaning|parameter: 0 
+2026-05-18 14:00:55.0261|INFO|Meaning|+CREG: MT_response Network Registration
+2026-05-18 14:00:55.0456|INFO|Meaning|Reg_stat: 0 Registering or searching for a network (currently out of coverage)
+2026-05-18 14:00:57.1881|INFO|Meaning|G: MT_response 
+2026-05-18 14:00:57.2070|INFO|Meaning|parameter: 1 
+2026-05-18 14:00:57.2268|INFO|Meaning|parameter: 11 
+2026-05-18 14:00:57.2358|INFO|Meaning|parameter: 70101869 
+2026-05-18 14:00:57.3100|INFO|Meaning|+CTBCT: MT_response Cell Broadcast Information
+2026-05-18 14:00:57.3323|INFO|Meaning|LA: 11 Location Area
+2026-05-18 14:00:57.3521|INFO|Meaning|BS_service: de7 Hexadecimal value representing the bit values of the BS service information elements. “Registration” is the MSB.
+2026-05-18 14:00:57.3683|INFO|Meaning|Security_Information: 2 Current cell is operating in Security Class 3 (DCK/CCK)
+2026-05-18 14:00:57.3830|INFO|Meaning|SDS_TL_addressing: 3 MS choice to use SDS-TL Service centre addressing
+2026-05-18 14:00:57.4809|INFO|Meaning|S: MT_response 
+2026-05-18 14:00:57.5009|INFO|Meaning|parameter: 1 
+2026-05-18 14:00:57.5201|INFO|Meaning|parameter: 10700222 
+2026-05-18 14:00:58.7453|INFO|Meaning|+CTOM: Read TMO/DMO Operating Mode
+2026-05-18 14:00:58.8654|INFO|Meaning|CTOM: MT_response 
+2026-05-18 14:00:58.8860|INFO|Meaning|parameter: 0 
+2026-05-18 14:01:06.1257|INFO|Meaning|+CLVL: Set Volume Control
+2026-05-18 14:01:06.1820|INFO|Meaning|volume: 10 Volume level
+2026-05-18 14:01:06.2647|INFO|Meaning|+CLVL: Read Volume Control
+2026-05-18 14:01:06.4033|INFO|Meaning|+CLVL: MT_response Volume Control
+2026-05-18 14:01:06.4238|INFO|Meaning|volume: 10 Volume level
+2026-05-18 14:01:10.3550|INFO|Meaning|+CLVL: Set Volume Control
+2026-05-18 14:01:10.4137|INFO|Meaning|volume: 14 Volume level
+2026-05-18 14:01:10.4974|INFO|Meaning|+CLVL: Read Volume Control
+2026-05-18 14:01:10.6163|INFO|Meaning|+CLVL: MT_response Volume Control
+2026-05-18 14:01:10.6371|INFO|Meaning|volume: 14 Volume level
+2026-05-18 14:01:17.3863|INFO|Meaning|+CTSP: Set Services Profiles
+2026-05-18 14:01:17.4265|INFO|Meaning|service_profile: 1 “TE Only” controlled
+2026-05-18 14:01:17.4435|INFO|Meaning|service_layer_1: 1 Mobility Management
+2026-05-18 14:01:17.4617|INFO|Meaning|service_layer_2: 11 Group Management
+2026-05-18 14:01:17.4792|INFO|Meaning|+CTGS: Read Talkgroup Selection
+2026-05-18 14:01:17.5887|INFO|Meaning|+CTGS: MT_response Talkgroup Selection
+2026-05-18 14:01:22.9193|INFO|Meaning|+EMER: Read Emergency Mode
+2026-05-18 14:01:22.9682|INFO|Meaning|+EMER: MT_response Emergency Mode
+2026-05-18 14:01:27.3585|INFO|Meaning|+EMER: Set Emergency Mode
+2026-05-18 14:01:27.4041|INFO|Meaning|emergency_unsolic: 0 Disable Emergency Mode entry/exit notification
+2026-05-18 14:01:27.4205|INFO|Meaning|emergency_mode: 1 Enter Emergency Mode
+2026-05-18 14:01:29.1831|INFO|Meaning|+EMER: Set Emergency Mode
+2026-05-18 14:01:29.2282|INFO|Meaning|emergency_unsolic: 0 Disable Emergency Mode entry/exit notification
+2026-05-18 14:01:29.2490|INFO|Meaning|emergency_mode: 0 Leave Emergency Mode
