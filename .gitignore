@@ -8,6 +8,7 @@ __pycache__/
 .DS_Store
 outputs/
 1135099- MR2026.1_AT_Programmers_Guide_v1.docx
+GenAI API User Guide.md
 GenAI API User Guide.pdf
 # Ignore large model binaries
 models/*.gguf
