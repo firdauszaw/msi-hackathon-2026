@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tetra-at-command-families version="1.0" source-doc="1135099- MR2026.1_AT_Programmers_Guide_v1.docx" family-count="26" command-count="142">
+  <family name="Connection and Authentication" paragraph-index="630" command-count="1">
+    <command paragraph-index="632" heading="+MCAUTH – Mutual Authentication" token="+MCAUTH">Mutual Authentication</command>
+  </family>
+  <family name="Network and Mobility Management" paragraph-index="655" command-count="10">
+    <command paragraph-index="657" heading="+CREG – Network Registration" token="+CREG">Network Registration</command>
+    <command paragraph-index="674" heading="+MCNSEL – Network Selection" token="+MCNSEL">Network Selection</command>
+    <command paragraph-index="691" heading="+CTBCT – TETRA Cell Broadcast Information" token="+CTBCT">TETRA Cell Broadcast Information</command>
+    <command paragraph-index="710" heading="+CSQ – Cell Signal Quality" token="+CSQ">Cell Signal Quality</command>
+    <command paragraph-index="726" heading="+GCLI – Neighbour Cells Information" token="+GCLI">Neighbour Cells Information</command>
+    <command paragraph-index="744" heading="+CTRUA – Radio User Assignment" token="+CTRUA">Radio User Assignment</command>
+    <command paragraph-index="755" heading="+TXI – Transmit Inhibit Mode" token="+TXI">Transmit Inhibit Mode</command>
+    <command paragraph-index="782" heading="+CPWC – Power Class" token="+CPWC">Power Class</command>
+    <command paragraph-index="798" heading="+MCWIFI – Enable/Disable Wi-Fi" token="+MCWIFI">Enable/Disable Wi-Fi</command>
+    <command paragraph-index="811" heading="+MCDC – DIMETRA Connect" token="+MCDC">DIMETRA Connect</command>
+  </family>
+  <family name="Identity Management" paragraph-index="822" command-count="15">
+    <command paragraph-index="825" heading="+GMI – MT Manufacturer Identification" token="+GMI">MT Manufacturer Identification</command>
+    <command paragraph-index="831" heading="+GMR – MT Revision" token="+GMR">MT Revision</command>
+    <command paragraph-index="842" heading="+GSN – MT Serial Number" token="+GSN">MT Serial Number</command>
+    <command paragraph-index="853" heading="+GMM – MT Hardware Model" token="+GMM">MT Hardware Model</command>
+    <command paragraph-index="864" heading="+CNUMF – Fixed TETRA Identities" token="+CNUMF">Fixed TETRA Identities</command>
+    <command paragraph-index="886" heading="+CNUMS – Static TETRA Identities" token="+CNUMS">Static TETRA Identities</command>
+    <command paragraph-index="911" heading="+CNUMD – Dynamic TETRA Identities" token="+CNUMD">Dynamic TETRA Identities</command>
+    <command paragraph-index="938" heading="+CNUM – Get TETRA Identities" token="+CNUM">Get TETRA Identities</command>
+    <command paragraph-index="961" heading="+CTGL – Talkgroup List by Folder and DGNA Notification" token="+CTGL">Talkgroup List by Folder and DGNA Notification</command>
+    <command paragraph-index="993" heading="+MCTGL – Talkgroup List by Index" token="+MCTGL">Talkgroup List by Index</command>
+    <command paragraph-index="1071" heading="I – MT Manufacturer Specific Information" token="I">MT Manufacturer Specific Information</command>
+    <command paragraph-index="1088" heading="+MCFAV – Favourite List" token="+MCFAV">Favourite List</command>
+    <command paragraph-index="1116" heading="+MCFAVE – Favourite List Editor" token="+MCFAVE">Favourite List Editor</command>
+    <command paragraph-index="1134" heading="+MCDSE – Dialing Scheme Expand Number" token="+MCDSE">Dialing Scheme Expand Number</command>
+    <command paragraph-index="1146" heading="+MCDSR – Dialing Scheme Reduce Number" token="+MCDSR">Dialing Scheme Reduce Number</command>
+  </family>
+  <family name="Group Management" paragraph-index="1157" command-count="5">
+    <command paragraph-index="1159" heading="+CTGS – Talkgroup Selection" token="+CTGS">Talkgroup Selection</command>
+    <command paragraph-index="1203" heading="+MCTGS – Talkgroup Selection by Index" token="+MCTGS">Talkgroup Selection by Index</command>
+    <command paragraph-index="1263" heading="+MCFTGS – Extended Folder and Talkgroup Selection by Index" token="+MCFTGS">Extended Folder and Talkgroup Selection by Index</command>
+    <command paragraph-index="1280" heading="+MCDGNA – DGNA Notifications" token="+MCDGNA">DGNA Notifications</command>
+    <command paragraph-index="1294" heading="+CTSCAN – Scanning On/Off" token="+CTSCAN">Scanning On/Off</command>
+  </family>
+  <family name="Service Profiles &amp; Capabilities" paragraph-index="1320" command-count="2">
+    <command paragraph-index="1322" heading="+CTSP – Services Profiles" token="+CTSP">Services Profiles</command>
+    <command paragraph-index="1385" heading="+GCAP – MT Capabilities" token="+GCAP">MT Capabilities</command>
+  </family>
+  <family name="Call Control" paragraph-index="1409" command-count="22">
+    <command paragraph-index="1416" heading="+CTSDC – TETRA Service Definition for Calls" token="+CTSDC">TETRA Service Definition for Calls</command>
+    <command paragraph-index="1464" heading="D – Initiate a Call or PPP connection" token="D">Initiate a Call or PPP connection</command>
+    <command paragraph-index="1488" heading="A – Answer Hook Call" token="A">Answer Hook Call</command>
+    <command paragraph-index="1505" heading="H – Terminate Call" token="H">Terminate Call</command>
+    <command paragraph-index="1526" heading="+CTCC – Call Connect" token="+CTCC">Call Connect</command>
+    <command paragraph-index="1545" heading="+CTXG – Transmission Grant" token="+CTXG">Transmission Grant</command>
+    <command paragraph-index="1565" heading="+CTXD – Transmit Demand" token="+CTXD">Transmit Demand</command>
+    <command paragraph-index="1589" heading="+CUTXC – Uplink Transmit Cease" token="+CUTXC">Uplink Transmit Cease</command>
+    <command paragraph-index="1605" heading="+CTICN – Incoming Call Notification" token="+CTICN">Incoming Call Notification</command>
+    <command paragraph-index="1632" heading="+MCMCN – Missed Call Notification" token="+MCMCN">Missed Call Notification</command>
+    <command paragraph-index="1646" heading="+CTCR – Call Release" token="+CTCR">Call Release</command>
+    <command paragraph-index="1661" heading="+CTOCP – Outgoing Call Progress" token="+CTOCP">Outgoing Call Progress</command>
+    <command paragraph-index="1682" heading="+CDTXC – Call Transmission Ceased" token="+CDTXC">Call Transmission Ceased</command>
+    <command paragraph-index="1695" heading="+CTXW – Call Transmission Wait" token="+CTXW">Call Transmission Wait</command>
+    <command paragraph-index="1707" heading="+CTXN – Call Transmission Continue" token="+CTXN">Call Transmission Continue</command>
+    <command paragraph-index="1719" heading="+CTXI – Call Transmission Interrupted" token="+CTXI">Call Transmission Interrupted</command>
+    <command paragraph-index="1735" heading="+MCCFWD– Call Forward" token="+MCCFWD">Call Forward</command>
+    <command paragraph-index="1759" heading="+MCCFC – Infrastructure Call Forward" token="+MCCFC">Infrastructure Call Forward</command>
+    <command paragraph-index="1777" heading="+MCSSN – supplementary service notification" token="+MCSSN">supplementary service notification</command>
+    <command paragraph-index="1795" heading="+MSCANS – Scan Settings" token="+MSCANS">Scan Settings</command>
+    <command paragraph-index="1809" heading="+MCOCN – Outgoing Calls Notification" token="+MCOCN">Outgoing Calls Notification</command>
+    <command paragraph-index="1822" heading="+MCGWCD - Call Direction for Gateway" token="+MCGWCD">Call Direction for Gateway</command>
+  </family>
+  <family name="Motorola Runtime Data Retrival" paragraph-index="1836" command-count="2">
+    <command paragraph-index="1838" heading="+MCTSMSG – Retrieve SDS Messages (Text and Status)" token="+MCTSMSG">Retrieve SDS Messages (Text and Status)</command>
+    <command paragraph-index="1859" heading="+MCCOMSG – Retrive Callout Messages" token="+MCCOMSG">Retrive Callout Messages</command>
+  </family>
+  <family name="Motorola Collaborative messaging" paragraph-index="1874" command-count="3">
+    <command paragraph-index="1877" heading="+MCMST – Collaborative Messages State Synchronization" token="+MCMST">Collaborative Messages State Synchronization</command>
+    <command paragraph-index="1894" heading="+MCMSD –Sending Collaborative messages" token="+MCMSD">Sending Collaborative messages</command>
+    <command paragraph-index="1927" heading="+MCMPSD –Sending Pre-Defined messages" token="+MCMPSD">Sending Pre-Defined messages</command>
+  </family>
+  <family name="Audio and Accessory Control" paragraph-index="1955" command-count="11">
+    <command paragraph-index="1957" heading="+CLVL – Volume Control" token="+CLVL">Volume Control</command>
+    <command paragraph-index="1971" heading="+MCSPKR – Speaker Control" token="+MCSPKR">Speaker Control</command>
+    <command paragraph-index="1993" heading="+HHD – Handset On/Off Hook Detection" token="+HHD">Handset On/Off Hook Detection</command>
+    <command paragraph-index="2007" heading="+CTONE – Tone Control" token="+CTONE">Tone Control</command>
+    <command paragraph-index="2034" heading="+MCACCSTATE - Accessory Status" token="+MCACCSTATE">Accessory Status</command>
+    <command paragraph-index="2049" heading="+MCRWPC - Radio Wide Parameter Control" token="+MCRWPC">Radio Wide Parameter Control</command>
+    <command paragraph-index="2059" heading="+MCKEY – Key Event Detection" token="+MCKEY">Key Event Detection</command>
+    <command paragraph-index="2082" heading="+MCASSYPORT – Accessory Port Status" token="+MCASSYPORT">Accessory Port Status</command>
+    <command paragraph-index="2107" heading="+MCDKEY – Key Event Disablement" token="+MCDKEY">Key Event Disablement</command>
+    <command paragraph-index="2129" heading="+MCSAD – Secondary Accessory Detection" token="+MCSAD">Secondary Accessory Detection</command>
+    <command paragraph-index="2141" heading="+MCMIC – MIC Mute Control" token="+MCMIC">MIC Mute Control</command>
+  </family>
+  <family name="Short Data Service and Status" paragraph-index="2154" command-count="7">
+    <command paragraph-index="2173" heading="+CTSDS – TETRA Service Definition for SDS/Status (ETSI Syntax)" token="+CTSDS">TETRA Service Definition for SDS/Status (ETSI Syntax)</command>
+    <command paragraph-index="2203" heading="+CMGS – Sending SDS and Status (ETSI Syntax)" token="+CMGS">Sending SDS and Status (ETSI Syntax)</command>
+    <command paragraph-index="2233" heading="+CTSDSR – Receiving SDS and Status (ETSI Syntax)" token="+CTSDSR">Receiving SDS and Status (ETSI Syntax)</command>
+    <command paragraph-index="2252" heading="+CMGS – PID Registration &amp; Sending SDS &amp; Status (Motorola Solutions Syntax)" token="+CMGS">PID Registration &amp; Sending SDS &amp; Status (Motorola Solutions Syntax)</command>
+    <command paragraph-index="2280" heading="+CMT – Receiving SDS &amp; Status (Motorola Solutions Syntax)" token="+CMT">Receiving SDS &amp; Status (Motorola Solutions Syntax)</command>
+    <command paragraph-index="2296" heading="+CNMI – Message mode (Motorola Solutions Syntax)" token="+CNMI">Message mode (Motorola Solutions Syntax)</command>
+    <command paragraph-index="2310" heading="+CSDS – Supported SDS type (Motorola Solutions Syntax)" token="+CSDS">Supported SDS type (Motorola Solutions Syntax)</command>
+  </family>
+  <family name="Emergency" paragraph-index="2326" command-count="2">
+    <command paragraph-index="2328" heading="+EMER – Emergency Mode / Call" token="+EMER">Emergency Mode / Call</command>
+    <command paragraph-index="2351" heading="+MCEMERCP – Emergency Codeplug Settings" token="+MCEMERCP">Emergency Codeplug Settings</command>
+  </family>
+  <family name="Packet Data" paragraph-index="2367" command-count="3">
+    <command paragraph-index="2368" heading="+WS45 – DTE side Protocol Stack" token="+WS45">DTE side Protocol Stack</command>
+    <command paragraph-index="2382" heading="+WS46 – WDS-Stack side Selection for TNP1" token="+WS46">WDS-Stack side Selection for TNP1</command>
+    <command paragraph-index="2397" heading="O – Setup PPP Connection" token="O">Setup PPP Connection</command>
+  </family>
+  <family name="mDMO" paragraph-index="2410" command-count="5">
+    <command paragraph-index="2411" heading="+CTOM – TMO/DMO/GW/REP/NM Operating Mode" token="+CTOM">TMO/DMO/GW/REP/NM Operating Mode</command>
+    <command paragraph-index="2434" heading="+CTDCT – DMO communication type" token="+CTDCT">DMO communication type</command>
+    <command paragraph-index="2460" heading="+CTDGR – Synchronisation with DMO Gateway and/or Repeater" token="+CTDGR">Synchronisation with DMO Gateway and/or Repeater</command>
+    <command paragraph-index="2514" heading="+MCGWMD – Gateway Standby Mode" token="+MCGWMD">Gateway Standby Mode</command>
+    <command paragraph-index="2544" heading="+MCDGINFO - DMO and Gateway Information" token="+MCDGINFO">DMO and Gateway Information</command>
+  </family>
+  <family name="Security" paragraph-index="2563" command-count="2">
+    <command paragraph-index="2565" heading="+CPIN – PIN/PUK operations" token="+CPIN">PIN/PUK operations</command>
+    <command paragraph-index="2606" heading="+RCPIN – Enter Remote Control PIN" token="+RCPIN">Enter Remote Control PIN</command>
+  </family>
+  <family name="BSI Security" paragraph-index="2622" command-count="2">
+    <command paragraph-index="2625" heading="+SIM – Access to SIM Card" token="+SIM">Access to SIM Card</command>
+    <command paragraph-index="2667" heading="+ENCR – BSI End-to-End Encryption Function" token="+ENCR">BSI End-to-End Encryption Function</command>
+  </family>
+  <family name="Motorola Codeplug Access" paragraph-index="2724" command-count="13">
+    <command paragraph-index="2726" heading="+MCTGDR – Read DMO Talkgroups" token="+MCTGDR">Read DMO Talkgroups</command>
+    <command paragraph-index="2739" heading="+MCTGDW – DMO Talkgroups Modification" token="+MCTGDW">DMO Talkgroups Modification</command>
+    <command paragraph-index="2753" heading="+MCRCNT – Read Recent Call List" token="+MCRCNT">Read Recent Call List</command>
+    <command paragraph-index="2766" heading="+MCDAS – Read Disaster Alert Settings" token="+MCDAS">Read Disaster Alert Settings</command>
+    <command paragraph-index="2783" heading="+MCACS – Read Assistance Call Settings" token="+MCACS">Read Assistance Call Settings</command>
+    <command paragraph-index="2799" heading="+MCANNCS – Read Announcement Call Settings" token="+MCANNCS">Read Announcement Call Settings</command>
+    <command paragraph-index="2815" heading="+MCTSDAC – One-Touch Button Targeted Status Dynamic Address Configuration" token="+MCTSDAC">One-Touch Button Targeted Status Dynamic Address Configuration</command>
+    <command paragraph-index="2836" heading="+MCABR – Read Address Bundles" token="+MCABR">Read Address Bundles</command>
+    <command paragraph-index="2858" heading="+MCDRCM – DMO Repeater Call Monitor" token="+MCDRCM">DMO Repeater Call Monitor</command>
+    <command paragraph-index="2871" heading="+MCGWFWD – GW TMO to DMO Individual Address Configuration" token="+MCGWFWD">GW TMO to DMO Individual Address Configuration</command>
+    <command paragraph-index="2884" heading="+MCCPCRC – Codeplug Validation Checksum" token="+MCCPCRC">Codeplug Validation Checksum</command>
+    <command paragraph-index="2896" heading="+MCSDSS – Short Data Services Settings" token="+MCSDSS">Short Data Services Settings</command>
+    <command paragraph-index="2906" heading="+MCSTSID – Status ID List" token="+MCSTSID">Status ID List</command>
+  </family>
+  <family name="Phone Book" paragraph-index="2920" command-count="2">
+    <command paragraph-index="2922" heading="+CPBR – Read Phone Book Entries" token="+CPBR">Read Phone Book Entries</command>
+    <command paragraph-index="2947" heading="+CPBW – Write Phone Book Entries" token="+CPBW">Write Phone Book Entries</command>
+  </family>
+  <family name="GPS" paragraph-index="2975" command-count="3">
+    <command paragraph-index="2977" heading="+GPSPOS – Location Request" token="+GPSPOS">Location Request</command>
+    <command paragraph-index="2997" heading="+MCLIP – LIP Report Request" token="+MCLIP">LIP Report Request</command>
+    <command paragraph-index="3010" heading="+MCLOC – Location Service" token="+MCLOC">Location Service</command>
+  </family>
+  <family name="Power Off" paragraph-index="3020" command-count="5">
+    <command paragraph-index="3022" heading="+CFUN – Set Phone Functionality" token="+CFUN">Set Phone Functionality</command>
+    <command paragraph-index="3035" heading="+MCCFG – MT Configuration" token="+MCCFG">MT Configuration</command>
+    <command paragraph-index="3046" heading="+CBC – Battery Management" token="+CBC">Battery Management</command>
+    <command paragraph-index="3069" heading="+MCCHRGS – Charging state" token="+MCCHRGS">Charging state</command>
+    <command paragraph-index="3080" heading="+MCPWROFF – Power Off Allowed Notification" token="+MCPWROFF">Power Off Allowed Notification</command>
+  </family>
+  <family name="PEI Link Management" paragraph-index="3090" command-count="15">
+    <command paragraph-index="3091" heading="Z – Default AT Parameters" token="Z">Default AT Parameters</command>
+    <command paragraph-index="3106" heading="R – Reboot" token="R">Reboot</command>
+    <command paragraph-index="3118" heading="&amp;F – Restoration of Factory Default Serial Port Parameters" token="&amp;F">Restoration of Factory Default Serial Port Parameters</command>
+    <command paragraph-index="3131" heading="+IPR – Baud Rate" token="+IPR">Baud Rate</command>
+    <command paragraph-index="3154" heading="+IFC – Flow Control" token="+IFC">Flow Control</command>
+    <command paragraph-index="3179" heading="E – Echo" token="E">Echo</command>
+    <command paragraph-index="3189" heading="+ICF – Framing and Parity" token="+ICF">Framing and Parity</command>
+    <command paragraph-index="3203" heading="&amp;C – DCD Behaviour" token="&amp;C">DCD Behaviour</command>
+    <command paragraph-index="3214" heading="&amp;D – DTR behaviour" token="&amp;D">DTR behaviour</command>
+    <command paragraph-index="3225" heading="+CSCS – TE character set" token="+CSCS">TE character set</command>
+    <command paragraph-index="3238" heading="S3 – Line Termination Character" token="S3">Line Termination Character</command>
+    <command paragraph-index="3252" heading="S4 – Response Formatting Character" token="S4">Response Formatting Character</command>
+    <command paragraph-index="3266" heading="S5 – Line Editing Character" token="S5">Line Editing Character</command>
+    <command paragraph-index="3280" heading="Q – Result Code Suppression" token="Q">Result Code Suppression</command>
+    <command paragraph-index="3290" heading="V – Response Format" token="V">Response Format</command>
+  </family>
+  <family name="AT Multiplexer" paragraph-index="3300" command-count="1">
+    <command paragraph-index="3302" heading="+CMUX – AT Multiplexer activation" token="+CMUX">AT Multiplexer activation</command>
+  </family>
+  <family name="Testing" paragraph-index="3327" command-count="2">
+    <command paragraph-index="3329" heading="+MCBKS – BSI Keys Status" token="+MCBKS">BSI Keys Status</command>
+    <command paragraph-index="3340" heading="+MCRPS – Remote Programming State" token="+MCRPS">Remote Programming State</command>
+  </family>
+  <family name="Motorola Notice Display" paragraph-index="3360" command-count="3">
+    <command paragraph-index="3361" heading="+MCDNTN – Display Transient Notice with Text" token="+MCDNTN">Display Transient Notice with Text</command>
+    <command paragraph-index="3385" heading="+MCDNCN – Display Confirmation Notice with Text" token="+MCDNCN">Display Confirmation Notice with Text</command>
+    <command paragraph-index="3410" heading="+MCDNR – Remove Transient Notice with Text" token="+MCDNR">Remove Transient Notice with Text</command>
+  </family>
+  <family name="Man Down Control" paragraph-index="3424" command-count="3">
+    <command paragraph-index="3425" heading="+MCMDC –Man Down Control" token="+MCMDC">Man Down Control</command>
+    <command paragraph-index="3438" heading="+MCMDMMI –Man Down MMI Control" token="+MCMDMMI">Man Down MMI Control</command>
+    <command paragraph-index="3449" heading="+MCMDS –Man Down Status" token="+MCMDS">Man Down Status</command>
+  </family>
+  <family name="Proxy Data Service" paragraph-index="3465" command-count="2">
+    <command paragraph-index="3467" heading="+MCPRXDS-Proxy Data Sending" token="+MCPRXDS">Proxy Data Sending</command>
+    <command paragraph-index="3490" heading="+MCPRXDR –Proxy Data Receiving" token="+MCPRXDR">Proxy Data Receiving</command>
+  </family>
+  <family name="System Time" paragraph-index="3502" command-count="1">
+    <command paragraph-index="3504" heading="+CCLK – System Time" token="+CCLK">System Time</command>
+  </family>
+</tetra-at-command-families>

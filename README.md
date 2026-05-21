@@ -6,15 +6,15 @@ The app now uses a two-stage pipeline:
 
 1. Normal Parse
     Deterministic Python parsing that builds a structured forensic report with events, command-response sessions, anomalies, severity, and recommendations.
-2. AI Enrich
-    Optional cloud AI review that reads the deterministic parse report and adds likely root causes, operator actions, and a concise forensic narrative.
+2. AI Parse
+   Optional cloud AI review that reads the deterministic parse report, explains the flow in plain language, and points out where the flow looks broken or suspicious.
 
 This keeps the parser reliable and makes the AI step additive instead of replacing the parser.
 
 ## Current Workflow
 
 - Load a log file.
-- Choose `Normal Parse` or `AI Enrich`.
+- Choose `Normal Parse` or `AI Parse`.
 - Run the analysis.
 - Review the output in the desktop UI tabs:
    - Overview
@@ -70,7 +70,7 @@ If `1135099- MR2026.1_AT_Programmers_Guide_v1.docx` exists in the project root, 
 - `scripts/quick_parse_summary.py`
    Prints a short parser summary for a sample log.
 - `run_llm_analyze.py`
-   Runs the full deterministic parse plus cloud AI enrichment flow on the sample log.
+   Runs the full deterministic parse plus cloud AI Parse flow on the sample log.
 
 ## Output Files
 
@@ -86,6 +86,6 @@ For a log file named `TEST ATCMD.txt`, the app writes files like:
 
 - The app is now cloud-only for AI features. Local GGUF and `llama-cpp-python` paths were removed.
 - `Normal Parse` does not require an API key.
-- `AI Enrich` always runs `Normal Parse` first and then sends the structured parse report to cloud AI.
+- `AI Parse` always runs `Normal Parse` first and then sends the structured parse report to cloud AI.
 - Generated outputs and virtual environments are ignored by git.
 

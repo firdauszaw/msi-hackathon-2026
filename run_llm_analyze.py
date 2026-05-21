@@ -16,7 +16,7 @@ def main():
     report = parse_bundle["report"]
     overview_markdown = parse_bundle["overview_markdown"]
 
-    print("Starting cloud AI enrichment from deterministic parse report...")
+    print("Starting cloud AI Parse from deterministic parse report...")
     try:
         res = workflow.enrich_with_ai(report)
     except Exception as e:
@@ -34,7 +34,7 @@ def main():
         if parsed.get("_parse_error"):
             print("Parse error:", parsed.get("_parse_error"))
         else:
-            print("AI executive summary:", parsed.get("executive_summary"))
+            print("AI flow summary:", parsed.get("flow_summary") or parsed.get("executive_summary"))
     else:
         print("No parsed JSON returned.")
 

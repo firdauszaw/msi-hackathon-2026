@@ -3,7 +3,7 @@
 Workflow:
 1. Load a UART AT log file.
 2. Run Normal Parse for deterministic analysis.
-3. Optionally run AI Enrich, which sends the deterministic report to cloud AI.
+3. Optionally run AI Parse, which reviews the deterministic report and highlights broken flow.
 """
 
 from __future__ import annotations
@@ -42,10 +42,9 @@ class RadioForensicApp:
         self.current_output_paths: dict[str, str] = {}
 
         self.mode_var = tk.StringVar(value="Normal Parse")
-        self.api_key_var = tk.StringVar(value=os.environ.get("RFBOX_API_KEY", ""))
         self.file_var = tk.StringVar(value="No log file loaded")
         self.status_var = tk.StringVar(value="Load a UART log to begin.")
-        self.cloud_var = tk.StringVar(value=f"Cloud AI: {self.workflow.llm.api_model}")
+        self.cloud_var = tk.StringVar(value=self._cloud_status_text())
         self.summary_var = tk.StringVar(value="Waiting for input")
 
         self.metric_vars = {
@@ -63,21 +62,21 @@ class RadioForensicApp:
         outer.pack(fill="both", expand=True)
 
         hero = ctk.CTkFrame(outer, fg_color="#111827")
-        hero.pack(fill="x", padx=14, pady=(14, 10))
+        hero.pack(fill="x", padx=14, pady=(14, 8))
 
-        title = ctk.CTkLabel(hero, text="Radio Forensic Box", font=ctk.CTkFont(size=30, weight="bold"))
-        title.pack(anchor="w", padx=18, pady=(16, 2))
+        title = ctk.CTkLabel(hero, text="Radio Forensic Box", font=ctk.CTkFont(size=24, weight="bold"))
+        title.pack(anchor="w", padx=16, pady=(12, 2))
 
         subtitle = ctk.CTkLabel(
             hero,
-            text="Deterministic UART parsing first, cloud AI enrichment second.",
+            text="Deterministic UART parsing first, cloud AI flow review second.",
             text_color="#a5b4c3",
-            font=ctk.CTkFont(size=14),
+            font=ctk.CTkFont(size=12),
         )
-        subtitle.pack(anchor="w", padx=18, pady=(0, 12))
+        subtitle.pack(anchor="w", padx=16, pady=(0, 8))
 
         hero_footer = ctk.CTkFrame(hero, fg_color="transparent")
-        hero_footer.pack(fill="x", padx=18, pady=(0, 16))
+        hero_footer.pack(fill="x", padx=16, pady=(0, 10))
 
         status_label = ctk.CTkLabel(hero_footer, textvariable=self.status_var, text_color="#dbeafe")
         status_label.pack(side="left")
@@ -86,17 +85,17 @@ class RadioForensicApp:
         cloud_label.pack(side="right")
 
         controls = ctk.CTkFrame(outer)
-        controls.pack(fill="x", padx=14, pady=(0, 10))
+        controls.pack(fill="x", padx=14, pady=(0, 8))
 
         left_controls = ctk.CTkFrame(controls, fg_color="transparent")
-        left_controls.pack(side="left", fill="x", expand=True, padx=10, pady=10)
+        left_controls.pack(side="left", fill="x", expand=True, padx=10, pady=8)
 
         self.load_btn = ctk.CTkButton(left_controls, text="Load Log File", command=self._on_load_file, width=140)
         self.load_btn.pack(side="left", padx=(0, 10))
 
         self.mode_button = ctk.CTkSegmentedButton(
             left_controls,
-            values=["Normal Parse", "AI Enrich"],
+            values=["Normal Parse", "AI Parse"],
             variable=self.mode_var,
             command=self._on_mode_change,
             width=220,
@@ -115,74 +114,42 @@ class RadioForensicApp:
         )
         self.outputs_btn.pack(side="left")
 
-        right_controls = ctk.CTkFrame(controls, fg_color="transparent")
-        right_controls.pack(side="right", padx=10, pady=10)
-
-        api_label = ctk.CTkLabel(right_controls, text="Cloud API Key")
-        api_label.pack(anchor="w")
-
-        self.api_entry = ctk.CTkEntry(
-            right_controls,
-            width=340,
-            show="*",
-            placeholder_text="RFBOX_API_KEY",
-            textvariable=self.api_key_var,
+        cloud_hint = ctk.CTkLabel(
+            controls,
+            text="Cloud AI is read from .env only",
+            text_color="#94a3b8",
         )
-        self.api_entry.pack(anchor="w", pady=(4, 0))
+        cloud_hint.pack(side="right", padx=12)
 
         file_bar = ctk.CTkFrame(outer)
-        file_bar.pack(fill="x", padx=14, pady=(0, 10))
+        file_bar.pack(fill="x", padx=14, pady=(0, 8))
 
         file_caption = ctk.CTkLabel(file_bar, text="Active Case", text_color="#93c5fd")
-        file_caption.pack(anchor="w", padx=12, pady=(10, 0))
+        file_caption.pack(anchor="w", padx=12, pady=(8, 0))
 
         file_label = ctk.CTkLabel(file_bar, textvariable=self.file_var, anchor="w")
-        file_label.pack(fill="x", padx=12, pady=(2, 10))
+        file_label.pack(fill="x", padx=12, pady=(2, 8))
 
         progress_frame = ctk.CTkFrame(outer)
-        progress_frame.pack(fill="x", padx=14, pady=(0, 10))
+        progress_frame.pack(fill="x", padx=14, pady=(0, 8))
 
         self.progress_label = ctk.CTkLabel(progress_frame, textvariable=self.summary_var, anchor="w")
-        self.progress_label.pack(fill="x", padx=12, pady=(10, 6))
+        self.progress_label.pack(fill="x", padx=12, pady=(8, 4))
 
         self.progress_bar = ctk.CTkProgressBar(progress_frame, mode="indeterminate")
-        self.progress_bar.pack(fill="x", padx=12, pady=(0, 12))
+        self.progress_bar.pack(fill="x", padx=12, pady=(0, 8))
         self.progress_bar.stop()
         self.progress_bar.set(0)
-
-        metrics = ctk.CTkFrame(outer)
-        metrics.pack(fill="x", padx=14, pady=(0, 10))
-
-        self._build_metric_card(metrics, "Severity", self.metric_vars["severity"]).pack(side="left", fill="x", expand=True, padx=(10, 5), pady=10)
-        self._build_metric_card(metrics, "Commands", self.metric_vars["commands"]).pack(side="left", fill="x", expand=True, padx=5, pady=10)
-        self._build_metric_card(metrics, "Anomalies", self.metric_vars["anomalies"]).pack(side="left", fill="x", expand=True, padx=5, pady=10)
-        self._build_metric_card(metrics, "Errors", self.metric_vars["errors"]).pack(side="left", fill="x", expand=True, padx=(5, 10), pady=10)
 
         body = ctk.CTkFrame(outer)
         body.pack(fill="both", expand=True, padx=14, pady=(0, 14))
 
-        sidebar = ctk.CTkFrame(body, width=340)
-        sidebar.pack(side="left", fill="y", padx=(10, 8), pady=10)
-        sidebar.pack_propagate(False)
-
-        notes_label = ctk.CTkLabel(sidebar, text="Case Notes", anchor="w", font=ctk.CTkFont(size=18, weight="bold"))
-        notes_label.pack(fill="x", padx=10, pady=(10, 4))
-
-        self.notes_text = self._build_textbox(sidebar, height=14)
-        self.notes_text.pack(fill="both", expand=True, padx=10, pady=(0, 10))
-
-        findings_label = ctk.CTkLabel(sidebar, text="Detected Anomalies", anchor="w", font=ctk.CTkFont(size=18, weight="bold"))
-        findings_label.pack(fill="x", padx=10, pady=(0, 4))
-
-        self.findings_text = self._build_textbox(sidebar, height=16)
-        self.findings_text.pack(fill="both", expand=True, padx=10, pady=(0, 10))
-
         content = ctk.CTkFrame(body)
-        content.pack(side="left", fill="both", expand=True, padx=(0, 10), pady=10)
+        content.pack(side="left", fill="both", expand=True, padx=(10, 8), pady=10)
 
         self.tabs = ctk.CTkTabview(content)
         self.tabs.pack(fill="both", expand=True, padx=10, pady=10)
-        for name in ("Overview", "Timeline", "Parser JSON", "AI Report", "AI JSON"):
+        for name in ("Overview", "Timeline", "Parser JSON", "AI Parse", "AI JSON"):
             self.tabs.add(name)
 
         self.overview_text = self._build_textbox(self.tabs.tab("Overview"))
@@ -202,20 +169,61 @@ class RadioForensicApp:
         self.parser_json_text = self._build_textbox(self.tabs.tab("Parser JSON"))
         self.parser_json_text.pack(fill="both", expand=True, padx=10, pady=10)
 
-        self.ai_report_text = self._build_textbox(self.tabs.tab("AI Report"))
+        self.ai_report_text = self._build_textbox(self.tabs.tab("AI Parse"))
         self.ai_report_text.pack(fill="both", expand=True, padx=10, pady=10)
 
         self.ai_json_text = self._build_textbox(self.tabs.tab("AI JSON"))
         self.ai_json_text.pack(fill="both", expand=True, padx=10, pady=10)
 
+        self.tabs.set("Timeline")
+
+        sidebar = ctk.CTkFrame(body, width=280)
+        sidebar.pack(side="right", fill="y", padx=(0, 10), pady=10)
+        sidebar.pack_propagate(False)
+
+        stats_label = ctk.CTkLabel(sidebar, text="Case Snapshot", anchor="w", font=ctk.CTkFont(size=16, weight="bold"))
+        stats_label.pack(fill="x", padx=10, pady=(10, 4))
+
+        stats_grid = ctk.CTkFrame(sidebar, fg_color="transparent")
+        stats_grid.pack(fill="x", padx=10, pady=(0, 10))
+        stats_grid.grid_columnconfigure(0, weight=1)
+        stats_grid.grid_columnconfigure(1, weight=1)
+
+        self._build_metric_card(stats_grid, "Severity", self.metric_vars["severity"], compact=True).grid(row=0, column=0, sticky="ew", padx=(0, 4), pady=(0, 6))
+        self._build_metric_card(stats_grid, "Commands", self.metric_vars["commands"], compact=True).grid(row=0, column=1, sticky="ew", padx=(4, 0), pady=(0, 6))
+        self._build_metric_card(stats_grid, "Anomalies", self.metric_vars["anomalies"], compact=True).grid(row=1, column=0, sticky="ew", padx=(0, 4), pady=(0, 0))
+        self._build_metric_card(stats_grid, "Errors", self.metric_vars["errors"], compact=True).grid(row=1, column=1, sticky="ew", padx=(4, 0), pady=(0, 0))
+
+        notes_label = ctk.CTkLabel(sidebar, text="Case Notes", anchor="w", font=ctk.CTkFont(size=16, weight="bold"))
+        notes_label.pack(fill="x", padx=10, pady=(6, 4))
+
+        self.notes_text = self._build_textbox(sidebar, height=11)
+        self.notes_text.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+
+        findings_label = ctk.CTkLabel(sidebar, text="Detected Anomalies", anchor="w", font=ctk.CTkFont(size=16, weight="bold"))
+        findings_label.pack(fill="x", padx=10, pady=(0, 4))
+
+        self.findings_text = self._build_textbox(sidebar, height=12)
+        self.findings_text.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+
         self._clear_results()
 
-    def _build_metric_card(self, parent, label: str, value_var: tk.StringVar):
+    def _cloud_status_text(self) -> str:
+        if self.workflow.llm.is_configured:
+            return f"Cloud AI: {self.workflow.llm.api_model} configured from .env"
+        return f"Cloud AI: {self.workflow.llm.api_model} not configured (.env missing RFBOX_API_KEY)"
+
+    def _build_metric_card(self, parent, label: str, value_var: tk.StringVar, compact: bool = False):
         card = ctk.CTkFrame(parent)
-        value = ctk.CTkLabel(card, textvariable=value_var, font=ctk.CTkFont(size=28, weight="bold"))
-        value.pack(anchor="w", padx=14, pady=(12, 2))
-        caption = ctk.CTkLabel(card, text=label, text_color="#94a3b8")
-        caption.pack(anchor="w", padx=14, pady=(0, 12))
+        value_font_size = 20 if compact else 28
+        top_pad = 8 if compact else 12
+        bottom_pad = 8 if compact else 12
+        caption_font_size = 11 if compact else 13
+
+        value = ctk.CTkLabel(card, textvariable=value_var, font=ctk.CTkFont(size=value_font_size, weight="bold"))
+        value.pack(anchor="w", padx=12, pady=(top_pad, 0))
+        caption = ctk.CTkLabel(card, text=label, text_color="#94a3b8", font=ctk.CTkFont(size=caption_font_size))
+        caption.pack(anchor="w", padx=12, pady=(0, bottom_pad))
         return card
 
     def _build_textbox(self, parent, height: int | None = None):
@@ -251,7 +259,6 @@ class RadioForensicApp:
         self.run_btn.configure(state=tk.DISABLED if busy else tk.NORMAL)
         self.outputs_btn.configure(state=tk.DISABLED if busy or not self.current_output_paths else tk.NORMAL)
         self.mode_button.configure(state=tk.DISABLED if busy else tk.NORMAL)
-        self.api_entry.configure(state=tk.DISABLED if busy else tk.NORMAL)
         if busy:
             self.summary_var.set(message)
             self.progress_bar.start()
@@ -266,7 +273,7 @@ class RadioForensicApp:
         self._set_text(self.overview_text, "Normal Parse output will appear here.")
         self._set_text(self.timeline_text, "")
         self._set_text(self.parser_json_text, "")
-        self._set_text(self.ai_report_text, "AI Enrich results will appear here when enabled.")
+        self._set_text(self.ai_report_text, "AI Parse findings will appear here when enabled.")
         self._set_text(self.ai_json_text, "")
         self.metric_vars["severity"].set("--")
         self.metric_vars["commands"].set("0")
@@ -274,12 +281,15 @@ class RadioForensicApp:
         self.metric_vars["errors"].set("0")
 
     def _on_mode_change(self, value: str):
-        button_text = "Run AI Enrich" if value == "AI Enrich" else "Run Normal Parse"
+        button_text = "Run AI Parse" if value == "AI Parse" else "Run Normal Parse"
         self.run_btn.configure(text=button_text)
-        if value == "AI Enrich":
-            self._set_status("AI Enrich mode will run Normal Parse first, then cloud AI.")
+        if value == "AI Parse":
+            if self.workflow.llm.is_configured:
+                self._set_status("AI Parse will review the normal parse flow and highlight where it looks wrong.")
+            else:
+                self._set_status("AI Parse needs RFBOX_API_KEY in .env. Normal Parse is still available.")
         else:
-            self._set_status("Normal Parse mode runs deterministic Python analysis only.")
+            self._set_status("Normal Parse converts the AT command log into a human-readable flow summary.")
 
     def _on_load_file(self):
         path = filedialog.askopenfilename(
@@ -310,9 +320,8 @@ class RadioForensicApp:
             return
 
         mode = self.mode_var.get()
-        api_key = self.api_key_var.get().strip()
-        if mode == "AI Enrich" and not (api_key or self.workflow.llm.api_key):
-            self._set_status("AI Enrich requires RFBOX_API_KEY.")
+        if mode == "AI Parse" and not self.workflow.llm.is_configured:
+            self._set_status("AI Parse requires RFBOX_API_KEY in .env.")
             return
 
         self._set_busy(True, "Running deterministic parse...")
@@ -324,9 +333,7 @@ class RadioForensicApp:
                 overview_markdown = parse_bundle["overview_markdown"]
 
                 ai_result = None
-                key_to_use = api_key or self.workflow.llm.api_key
-                if mode == "AI Enrich":
-                    self.workflow.llm.update_config(api_key=key_to_use)
+                if mode == "AI Parse":
                     self.root.after(0, lambda: self._set_status("Deterministic parse complete. Calling cloud AI..."))
                     ai_result = self.workflow.enrich_with_ai(report)
 
@@ -374,7 +381,7 @@ class RadioForensicApp:
             self._set_text(self.ai_report_text, build_ai_markdown(ai_result))
             self._set_text(self.ai_json_text, json.dumps(ai_result.get("parsed"), indent=2, ensure_ascii=False))
         else:
-            self._set_text(self.ai_report_text, "AI Enrich was not run for this case.")
+            self._set_text(self.ai_report_text, "AI Parse was not run for this case.")
             self._set_text(self.ai_json_text, "")
 
         self._set_busy(False, f"{mode} complete. Outputs saved to outputs/.")

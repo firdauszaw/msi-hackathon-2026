@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tetra-at-command-reference version="1.0" source="user-provided reference dictionary" updated="2026-05-21">
+  <interface>
+    <special-characters>
+      <character token="&lt;CR&gt;" name="CR" decimal="13" hex="0x0D" usage="Line termination character">Carriage Return</character>
+      <character token="&lt;LF&gt;" name="LF" decimal="10" hex="0x0A" usage="Response formatting character">Linefeed</character>
+      <character token="&lt;BS&gt;" name="BS" decimal="8" hex="0x08" usage="Line editing character">Backspace</character>
+      <character token="&lt;CTRL-Z&gt;" name="CTRL-Z" decimal="26" hex="0x1A" usage="Submits PDU payload data strings">End of file</character>
+      <character token="&lt;ESC&gt;" name="ESC" decimal="27" hex="0x1B" usage="Transaction abort signal">Escape</character>
+    </special-characters>
+    <default-settings>
+      <setting name="+CSCS" value="IRA" mutable="false" usage="Character set">International Reference Alphabet (ITU-T T.50 ASCII standard)</setting>
+      <setting name="Q0" value="On" mutable="false" usage="Result codes">Result codes are explicitly enabled</setting>
+      <setting name="V1" value="Verbose" mutable="false" usage="Response format">Response strings are fully alphanumeric text</setting>
+      <setting name="+CMEE" value="1" mutable="false" usage="Extended error mode">Numeric extended error codes are active</setting>
+      <setting name="+CMGF" value="0" mutable="false" usage="Short Data Service mode">Short Data Service operates in raw TETRA PDU mode</setting>
+    </default-settings>
+  </interface>
+  <commands>
+    <command name="+CME ERROR" category="error-response">
+      <description>Extended error response codes returned after an issued transaction payload string.</description>
+      <field key="error_code" label="Error report code" type="enum">
+        <value code="0" short-name="MT Failure">Mobile terminal completely failed to transmit message over the air layout.</value>
+        <value code="3" short-name="Operations Not Allowed">Terminal cannot execute the action under the current cellular state, such as during an active emergency call.</value>
+        <value code="4" short-name="Operation Not Supported">The requested feature or operational mode is disabled in terminal firmware.</value>
+        <value code="9" short-name="Incorrect MS PUK">Wrong Master Unblocking Key sequence entered.</value>
+        <value code="10" short-name="SIM Not Inserted">Terminal requires an active security smart-card module.</value>
+        <value code="11" short-name="MS PIN Required">Handset interface or smart card is PIN-locked.</value>
+        <value code="12" short-name="MS PUK Required">Access is blocked after too many wrong entries and now requires a PUK code.</value>
+        <value code="13" short-name="SIM Failure">Communication failed while accessing physical SIM memory blocks.</value>
+        <value code="14" short-name="SIM Busy">Smart-card processing is already occupied by another internal task.</value>
+        <value code="15" short-name="SIM Wrong">The terminal rejects the inserted card model or type.</value>
+        <value code="16" short-name="Incorrect MS PIN">The provided PIN does not match the active code.</value>
+        <value code="19" short-name="SIM Blocked">The target card is permanently blocked after maximum unblocking attempts.</value>
+        <value code="20" short-name="Memory Full">Internal storage is full, for example the phonebook or flash-backed buffers.</value>
+        <value code="24" short-name="Text String Too Long">The text payload exceeds the character capacity for the active transmission path.</value>
+        <value code="25" short-name="Invalid Characters in Text String">Illegal payload characters were found during text parsing.</value>
+        <value code="26" short-name="Dial String Too Long">The target address sequence is longer than terminal string buffers permit.</value>
+        <value code="27" short-name="Invalid Characters in Dial String">The dial string contains unsupported structural markers.</value>
+        <value code="30" short-name="No Network Service">The device lost network service and is outside usable RF coverage.</value>
+        <value code="33" short-name="Parameter Wrong Type">Input format error, such as sending literal text where a numeric value is required.</value>
+        <value code="34" short-name="Parameter Value Out of Range">Integer parameters fall outside established bounds.</value>
+        <value code="35" short-name="Syntax Error">Malformed line structure or wrong parameter count.</value>
+        <value code="37" short-name="Timeout Waiting for Data">The PDU transmission timed out while waiting for more payload data.</value>
+        <value code="40" short-name="Service Not Supported in DMO">The requested transaction cannot execute while the terminal is in Direct Mode.</value>
+        <value code="41" short-name="Transmissions are Inhibited">Radio hardware is locked in Transmit Inhibit (TXI) state.</value>
+        <value code="42" short-name="Service Temporarily Not Available">The system is busy handling higher-priority internal actions.</value>
+        <value code="43" short-name="Service Not Supported in TMO">The requested dynamic gateway linkage is rejected in Trunked Mode.</value>
+        <value code="50" short-name="No GPS Network Service">The GPS solution pipeline is active but cannot produce a valid coordinate fix.</value>
+        <value code="505" short-name="RC PIN Required">A remote control sequence was rejected pending security verification.</value>
+        <value code="667" short-name="Request Timeout">The internal task watchdog aborted because no handshake completed within 60 seconds.</value>
+        <value code="669" short-name="Authentication Response Invalid">Challenge verification failed because the response block was wrong.</value>
+        <value code="670" short-name="Authentication Failed">Too many failed verification attempts require a link power reset.</value>
+        <value code="671" short-name="Radio Memory Allocation Fail">Hardware buffer initialization failed because memory is blocked or exhausted.</value>
+        <value code="683" short-name="MT New PIN Required">Default code 0000 was rejected and the terminal now enforces a new PIN.</value>
+      </field>
+    </command>
+    <command name="+CREG" category="network-status">
+      <description>Network registration state matrix.</description>
+      <field key="reg_stat" label="Reg stat" type="enum">
+        <value code="0" short-name="Out of Coverage">Logically disconnected from the local base station topology.</value>
+        <value code="1" short-name="Registered on Home Network">Registered on the home network footprint.</value>
+        <value code="2" short-name="Registration Denied">No structural network options are currently available.</value>
+        <value code="3" short-name="Critical System Rejection">Rejected by the core network routing framework.</value>
+        <value code="5" short-name="Registered on Guest Network">Registered on a visited or guest network infrastructure.</value>
+      </field>
+    </command>
+    <command name="+CTBCT" category="network-status">
+      <description>Cellular broadcast diagnostics.</description>
+      <field key="location_area" label="LA" type="integer">
+        <description>16-bit target cell Location Area identifier code.</description>
+      </field>
+      <field key="bs_service" label="BS service" type="bitfield">
+        <bit code="0x020" short-name="LST">Cell functions entirely in Local Site Trunking fallback mode and the wide-area infrastructure path is down.</bit>
+        <bit code="0x060" short-name="Wide Area Trunking">Cell is functioning normally in wide area trunking mode.</bit>
+        <bit code="0x200" short-name="SNDCP Packet Data">Base station supports SNDCP packet data functionality.</bit>
+        <bit code="0x400" short-name="Air Interface Encryption">Base station enforces Air Interface Encryption.</bit>
+      </field>
+      <field key="security_information" label="Security Information" type="enum">
+        <value code="0" short-name="Security Class 1">Clear mode, with no encryption filters applied.</value>
+        <value code="1" short-name="Security Class 2">Static Cipher Key (SCK) encryption is active.</value>
+        <value code="2" short-name="Security Class 3">Derived Cipher Key (DCK) or Common Cipher Key (CCK) encryption is active.</value>
+      </field>
+    </command>
+    <command name="+CSQ" category="signal-status">
+      <description>Received signal strength and bit error diagnostics.</description>
+      <field key="rssi" label="RSSI" type="enum-range">
+        <value code="0" short-name="Below -113 dBm">Worse than the -113 dBm signal floor.</value>
+        <value code="1" short-name="-111 to -112 dBm">Highly degraded reception near the lower limit.</value>
+        <range min="2" max="30" short-name="-109 to -53 dBm">Step scale mapping upward in clean 2 dBm increments.</range>
+        <value code="31" short-name="-51 dBm or better">Optimal reception saturation.</value>
+        <value code="99" short-name="No Signal">Complete network signal drop or nothing detected.</value>
+      </field>
+      <field key="ber" label="BER" type="integer">
+        <description>Bit error rate value as reported by the modem.</description>
+      </field>
+    </command>
+    <command name="+CTSDC" category="voice-call-control">
+      <description>Calling configuration matrix mapping.</description>
+      <field key="called_party_identity_type" label="Called party identity type" type="enum">
+        <value code="0" short-name="SSI">Short Subscriber Identity.</value>
+        <value code="1" short-name="TSI">TETRA Subscriber Identity.</value>
+        <value code="3" short-name="PABX">Private Automatic Branch Exchange identity.</value>
+        <value code="4" short-name="PSTN">Public Switched Telephone Network identity.</value>
+        <value code="5" short-name="Extended TSI">Extended TETRA Subscriber Identity.</value>
+        <value code="255" short-name="Manual Dial String">Manual dial string selection.</value>
+      </field>
+      <field key="hook_selection" label="Hook selection" type="enum">
+        <value code="0" short-name="Hook signaling">Simplex or duplex individual signaling flow.</value>
+        <value code="1" short-name="Direct signaling">Immediate broadcast or group-call signaling flow.</value>
+      </field>
+      <field key="simplex_duplex_setting" label="Simplex/Duplex setting" type="enum">
+        <value code="0" short-name="Duplex">Private target line in duplex mode.</value>
+        <value code="1" short-name="Simplex">Talkgroup-oriented simplex mode.</value>
+      </field>
+      <field key="comms_layout" label="Comms layout structural definition" type="enum">
+        <value code="0" short-name="Point-to-Point">Private line connection.</value>
+        <value code="1" short-name="Point-to-Multipoint">Group talkgroup connection.</value>
+        <value code="3" short-name="Broadcast Call">Broadcast call topology.</value>
+      </field>
+    </command>
+    <command name="+CTXG" category="voice-call-control">
+      <description>Transmission line token changes.</description>
+      <field key="tx_grant" label="TxGrant" type="enum">
+        <value code="0" short-name="Granted">Transmission line token granted successfully and the local device can open the microphone.</value>
+        <value code="1" short-name="Denied">Transmission request denied by network infrastructure.</value>
+        <value code="2" short-name="Queued">Transmission request queued in the base-station scheduler.</value>
+        <value code="3" short-name="Granted to Other Party">Another party currently owns the transmission token; inspect the TPI field to identify the speaker.</value>
+      <value code="5" short-name="Other State">Reserved or vendor-specific transmission token state.</value>
+      </field>
+    </command>
+    <command name="+CTCR" category="voice-call-control">
+      <description>Critical disconnect cause registry.</description>
+      <field key="disconnect_cause" label="disconnect cause" type="enum">
+        <value code="0" short-name="Unknown Cause">Dropped without explicit error parameters; general network failure or hardware state wipeout.</value>
+        <value code="1" short-name="User Request">Normal disconnect caused by a manual user or application action.</value>
+        <value code="2" short-name="Called Party Busy">Destination identity is already occupied in an active voice session.</value>
+        <value code="3" short-name="Called Party Not Reachable">The intended destination is not acknowledged across the network footprint.</value>
+        <value code="4" short-name="Called Party Rejects Encryption">Security handshake mismatch because the remote device lacks the required decryption keys.</value>
+        <value code="5" short-name="Network Congestion">The target cell site has reached traffic capacity.</value>
+        <value code="6" short-name="Not Allowed Traffic">Traffic class or usage restriction violation.</value>
+        <value code="7" short-name="Incompatible Traffic">Speech slot or data type assignment processing error.</value>
+        <value code="8" short-name="Service Not Available">The serving cell lacks support for this service profile.</value>
+        <value code="9" short-name="Pre-emption">Dropped because a higher-priority call, such as an emergency alert, pre-empted the session.</value>
+        <value code="11" short-name="Called Party Rejection">Destination terminal user manually rejected the call.</value>
+        <value code="13" short-name="Timer Expiry">The session exceeded allowed duration and the network timed it out.</value>
+        <value code="14" short-name="SwMI Disconnect">Network infrastructure controller explicitly terminated the session.</value>
+        <value code="15" short-name="No Acknowledgement">Layer-2 confirmation was lost, typically because of packet loss.</value>
+        <value code="19" short-name="Call Restoration Failed">Handover or roaming restoration failed during a micro-cell transition.</value>
+        <value code="20" short-name="Called Party Enforces Encryption">Destination device rejects clear calls and requires encrypted traffic.</value>
+        <value code="33" short-name="Link to DM-REP Failed">Lost synchronization with the Direct Mode Repeater.</value>
+        <value code="34" short-name="Link to Gateway Failed">Lost the communication path with a TMO proxy Direct Mode Gateway device.</value>
+        <value code="35" short-name="Call Rejected by Gateway">Gateway parsed the connection parameters but explicitly rejected access.</value>
+        <value code="38" short-name="Transmit Authorization Lost">Base-station controller revoked the talk slot window.</value>
+        <value code="39" short-name="Channel Occupied by Other Users">Direct Mode collision because the target channel is busy with other traffic.</value>
+        <value code="40" short-name="Security Parameter Mismatch">Dynamic crypto handshake error due to mismatched key versions or security parameters.</value>
+      </field>
+    </command>
+  </commands>
+</tetra-at-command-reference>

@@ -1,4 +1,4 @@
-"""Workflow orchestration for parse and AI-enrichment runs."""
+"""Workflow orchestration for normal parse and AI parse runs."""
 
 from __future__ import annotations
 
@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from .docparser import safe_load_docx_mapping
+from .env import load_env
 from .llm import LLMManager
 from .parser import LogParser
 from .reporting import build_ai_markdown, build_normal_parse_markdown
@@ -18,6 +19,7 @@ DOC_REFERENCE_NAME = "1135099- MR2026.1_AT_Programmers_Guide_v1.docx"
 
 class AnalysisWorkflow:
     def __init__(self, project_root: str):
+        load_env(anchor_file=__file__)
         self.project_root = Path(project_root)
         self.outputs_dir = self.project_root / "outputs"
         self.outputs_dir.mkdir(parents=True, exist_ok=True)
@@ -40,8 +42,7 @@ class AnalysisWorkflow:
 
     def enrich_with_ai(self, report: Dict[str, Any]) -> Dict[str, Any]:
         result = self.llm.analyze_parse_report(report)
-        if not result.get("markdown"):
-            result["markdown"] = build_ai_markdown(result)
+        result["markdown"] = build_ai_markdown(result)
         return result
 
     def save_outputs(
